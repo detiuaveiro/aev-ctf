@@ -1,0 +1,29 @@
+name: "auth9"
+author: "course staff"
+title: "DeskHero Helpdesk"
+category: auth
+description: |
+  Minted from a clock,
+  a second's width holds it all —
+  count, and try each one.
+
+  http://auth9.chal.deti:8068
+  Credentials: agent / agent123
+
+  Difficulty: medium.
+
+  CWE: CWE-330, CWE-331
+value: 150
+type: standard
+
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{auth9_local_verify}"   # replaced per deployment
+tags:
+  - auth
+  - web
+connection_info: "http://auth9.chal.deti:8068"
+state: visible   # 2026-10-29: s33-only promotion, per docs/plans/2026-10-23-deploy-inj-s33-rule.md
+version: "0.1"

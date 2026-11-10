@@ -1,0 +1,15 @@
+services:
+  leak2:
+    build: .
+    hostname: leak2
+    domainname: chal.deti
+    ports:
+      - "8011:8080"
+    environment:
+      FLAG: "flag{endpoint_local_verify}"
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    pids_limit: 64

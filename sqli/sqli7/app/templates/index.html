@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="/static/base.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      {% if logo %}
+      <img class="logo" src="{{ logo }}" alt="">
+      {% else %}
+      <div class="logo" aria-hidden="true">{{ name[0] }}</div>
+      {% endif %}
+      <div>
+        <h1>{{ name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </header>
+
+    {% if hero %}
+    <img class="hero" src="{{ hero }}" alt="">
+    {% endif %}
+
+    {% if view == "home" %}
+    <div class="card">
+      <h2>Paste a link</h2>
+      <form method="post" action="/add" class="stack">
+        <label class="field">Link
+          <input type="text" name="url" placeholder="https://..." required>
+        </label>
+        <label class="field">Note for yourself
+          <input type="text" name="note">
+        </label>
+        <button type="submit" class="btn">Preview</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Saved links</h2>
+      <table>
+        <thead>
+          <tr><th>Note</th><th>Link</th></tr>
+        </thead>
+        <tbody>
+          {% for l in links %}
+          <tr>
+            <td>{{ l["note"] }}</td>
+            <td><a href="/l/{{ l["id"] }}">{{ l["url"] }}</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="card">
+      <h2>Previews</h2>
+      {% if previews %}
+      <div class="stack">
+        {% for p in previews %}
+        <div class="preview">
+          <h3>{{ p["note"] or p["url"] }}</h3>
+          <p class="url">{{ p["url"] }}</p>
+          <p class="flash {% if p["status"].startswith("Fetched") %}flash-success{% else %}flash-warn{% endif %}">{{ p["status"] }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="flash flash-warn">Nothing to preview here.</p>
+      {% endif %}
+      <a class="btn-ghost" href="/">&larr; Back</a>
+    </div>
+    {% endif %}
+
+    <footer class="footer">&copy; 2026 {{ name }} &middot; prepared for the course lab</footer>
+  </div>
+</body>
+</html>

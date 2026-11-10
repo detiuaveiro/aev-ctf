@@ -1,0 +1,35 @@
+name: "sqli2"
+author: "course staff"
+title: "TechBazaar Search"
+category: sqli
+description: |
+  Find it by name, or a part.
+  The shelves talk when ruffled.
+  What's in the back room?
+
+  http://sqli2.chal.deti:8031
+
+  Difficulty: medium.
+
+  CWE: CWE-89
+value: 200
+type: standard
+# Rolling flag, reseed variant: the flag lives in the challenge DATABASE, which
+# is reconstructed from the live flag file on every container start (all seed
+# data + the flag at the __FLAG__ placeholder). After each correct solve the
+# watcher generates a new flag, pushes it to the flag folder and restarts the
+# container so the DB picks it up; CTFd's single static flag follows.
+# (rolling design: docs/plans/2026-10-09-rolling-flag-design.md; suite plan:
+# docs/plans/2026-10-12-sqli-challenges.md, P4.1)
+flag_mode: rolling
+flag_uid: 1000
+reseed: true
+
+flags:
+  - "flag{sqli2_local_verify}"   # replaced per deployment
+tags:
+  - sqli
+  - web
+connection_info: "http://sqli2.chal.deti:8031"
+state: visible   # published 2026-10-16 (Update A: CTFd can now show them)
+version: "0.1"

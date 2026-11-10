@@ -1,0 +1,29 @@
+name: "auth4"
+author: "course staff"
+title: "ExpenseFlow"
+category: auth
+description: |
+  The page hides a door
+  your browser alone decides —
+  edit the lock's note.
+
+  http://auth4.chal.deti:8063
+  Credentials: employee / employee123
+
+  Difficulty: easy.
+
+  CWE: CWE-602
+value: 100
+type: standard
+
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{auth4_local_verify}"   # replaced per deployment
+tags:
+  - auth
+  - web
+connection_info: "http://auth4.chal.deti:8063"
+state: visible   # 2026-10-29: s33-only promotion, per docs/plans/2026-10-23-deploy-inj-s33-rule.md
+version: "0.1"

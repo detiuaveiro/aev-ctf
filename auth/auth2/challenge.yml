@@ -1,0 +1,28 @@
+name: "auth2"
+author: "course staff"
+title: "Harbor Wiki"
+category: auth
+description: |
+  Who sent you this way?
+  The page only asks, and trusts
+  whatever you say.
+
+  http://auth2.chal.deti:8061
+
+  Difficulty: easy.
+
+  CWE: CWE-293
+value: 100
+type: standard
+
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{auth2_local_verify}"   # replaced per deployment
+tags:
+  - auth
+  - web
+connection_info: "http://auth2.chal.deti:8061"
+state: visible   # 2026-10-29: s33-only promotion, per docs/plans/2026-10-23-deploy-inj-s33-rule.md
+version: "0.1"

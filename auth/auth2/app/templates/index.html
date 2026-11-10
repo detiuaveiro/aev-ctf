@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="/static/base.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <div class="logo" aria-hidden="true">{{ name[0] }}</div>
+      <div>
+        <h1>{{ name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </header>
+
+    {% if page == "landing" %}
+    <div class="card">
+      <h2>Welcome to the Harbor Wiki</h2>
+      <p>Public space documentation lives here. Staff: start from the
+         <a href="/wiki/staff-home">staff home</a> page for internal links.</p>
+    </div>
+    {% elif page == "staff-home" %}
+    <div class="card">
+      <h2>Staff home</h2>
+      <p>Hub page for internal documentation. The on-call runbook has moved to a new
+         address while the wiki migration is in progress and isn't linked from here
+         yet: <code>/wiki/internal/ops-runbook</code>. It's still staff-only, so it
+         only loads when your browser reports you came from this page — IT hasn't
+         gotten around to wiring up a real link yet.</p>
+    </div>
+    {% elif page == "runbook" %}
+    <div class="card">
+      <h2>Ops runbook — Internal</h2>
+      <p>Escalation path for a service outage.</p>
+      <ol>
+        <li>Page the on-call engineer via the status board.</li>
+        <li>If unreachable in 15 minutes, use the break-glass admin token
+            below.</li>
+      </ol>
+      <table>
+        <tbody>
+          <tr><th>Break-glass admin token</th><td>{{ flag }}</td></tr>
+        </tbody>
+      </table>
+    </div>
+    {% endif %}
+
+    <p class="footer">Harbor Wiki</p>
+  </div>
+</body>
+</html>

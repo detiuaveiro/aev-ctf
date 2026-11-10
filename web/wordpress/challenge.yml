@@ -1,0 +1,36 @@
+name: "wordpress"
+author: "course staff"
+category: web
+description: |
+  A blog, freshly seeded
+  the core beneath has not seen
+  a patch in many moons
+
+  http://wordpress.chal.deti:8084
+  The flag lives outside the web root.
+
+  Difficulty: advanced.
+
+  CWE: CWE-1104
+value: 100
+type: standard
+
+# Rolling flag: served from /etc/lab/flags/<name> (shared single-container);
+# a watcher replaces it after each correct solve (docs/plans/2026-10-09-rolling-flag-design.md).
+flag_mode: rolling
+# uid of the in-container process that reads the /flag mount (rolling flag, P2):
+# wordpress' Apache runs as www-data (33); all other apps run as ctf (1000).
+flag_uid: 33
+
+flags:
+  - "flag{wordpress_local_verify}"   # replaced per deployment
+
+tags:
+  - "web"
+  - "advanced"
+
+# Where CTFd should point students (set by your deploy tooling).
+connection_info: "http://wordpress.chal.deti:8084"
+
+state: visible   # event open (2026-10-09): flipped for the live class run
+version: "0.1"

@@ -1,0 +1,32 @@
+name: "inj11"
+author: "course staff"
+title: "LogWarden"
+category: inj
+description: |
+  the form only stores it
+  the shipper is what runs it
+  trust is a path, not a wall
+
+  http://inj11.chal.deti:8050
+
+  Difficulty: hard.
+
+  CWE: CWE-78
+value: 200
+type: standard
+# Rolling flag: the app never reads the flag -- the INJECTED shell does
+# (cat /flag/flag) at ship time, so the live mount is read per request.
+# Volume=<flagmount>/inj11:/flag:ro is added by the lab-challenge helper.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj11_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+
+connection_info: "http://inj11.chal.deti:8050"
+state: visible
+version: "0.1"

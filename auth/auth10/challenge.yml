@@ -1,0 +1,28 @@
+name: "auth10"
+author: "course staff"
+title: "PeopleFirst HR"
+category: auth
+description: |
+  Wrong name gets a "no."
+  Right name just needs the one
+  password no one changed.
+
+  http://auth10.chal.deti:8069
+
+  Difficulty: easy.
+
+  CWE: CWE-204
+value: 100
+type: standard
+
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{auth10_local_verify}"   # replaced per deployment
+tags:
+  - auth
+  - web
+connection_info: "http://auth10.chal.deti:8069"
+state: visible   # 2026-10-29: s33-only promotion, per docs/plans/2026-10-23-deploy-inj-s33-rule.md
+version: "0.1"

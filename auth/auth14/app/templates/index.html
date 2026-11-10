@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="/static/base.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <div class="logo" aria-hidden="true">{{ name[0] }}</div>
+      <div>
+        <h1>{{ name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </header>
+
+    {% if page == "landing" %}
+    <div class="card">
+      <h2>Personal banking</h2>
+      <p>Check your accounts and recent transactions in the online console.</p>
+      <p><a class="btn" href="/dashboard">Account console</a></p>
+    </div>
+    <div class="card">
+      <h2>Branch staff</h2>
+      <p>End-of-shift reporting: every night a monitoring probe signs the branch
+        manager in, pulls the shift report and signs out again. Running late, or
+        need a fresh report? Trigger the same probe manually:</p>
+      <form method="post" action="/bot/manager-shift-report">
+        <button class="btn" type="submit">Run shift report sync</button>
+      </form>
+    </div>
+    <div class="card">
+      <h2>IT &amp; operations</h2>
+      <p>Recent session activity across the console is kept for troubleshooting on
+        the operations diagnostics page.</p>
+      <p><a class="btn-ghost btn" href="/diagnostics">Ops diagnostics</a></p>
+    </div>
+    {% elif page == "diagnostics" %}
+    <div class="card">
+      <h2>Ops diagnostics — session trace (last 20)</h2>
+      <p>Session ids are logged here for troubleshooting only.</p>
+      <table>
+        <thead><tr><th>Time</th><th>Session id</th><th>Note</th></tr></thead>
+        <tbody>
+          {% for e in log %}
+          <tr><td>{{ e.ts }}</td><td>{{ e.sid }}</td><td>{{ e.note }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% elif page == "dashboard" %}
+    <div class="card">
+      <h2>Branch dashboard</h2>
+      {% if token %}
+      <table>
+        <tbody>
+          <tr><th>Branch manager console token</th><td>{{ token }}</td></tr>
+        </tbody>
+      </table>
+      {% else %}
+      <p>Welcome back. Your accounts look fine — nothing outstanding.</p>
+      <table>
+        <tbody>
+          <tr><th>Signed in as</th><td>personal banking customer</td></tr>
+          <tr><th>Your session id</th><td><code>{{ sid }}</code></td></tr>
+          <tr><th>Manager console</th><td>not available for this account</td></tr>
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <p class="footer">FernBank Online</p>
+  </div>
+</body>
+</html>

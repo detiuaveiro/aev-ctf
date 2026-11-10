@@ -1,0 +1,30 @@
+name: "xss2"
+author: "course staff"
+category: web
+description: |
+  Notes for the next shift
+  written once, read by all
+  what is read can run
+
+  http://xss2.chal.deti:8022
+
+  Difficulty: easy.
+
+  CWE: CWE-79
+value: 150
+type: standard
+
+flags:
+  - "flag{xss2_local_verify}"   # replaced per deployment
+
+tags:
+  - "web"
+  - "xss"
+  - "stored"
+  - "easy"
+
+# Where CTFd should point students (set by your deploy tooling).
+connection_info: "http://xss2.chal.deti:8022"
+
+state: hidden   # flip to visible when the event opens
+version: "0.1"

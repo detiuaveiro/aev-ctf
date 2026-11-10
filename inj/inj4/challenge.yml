@@ -1,0 +1,32 @@
+name: "inj4"
+author: "course staff"
+title: "Catalogo"
+category: inj
+description: |
+  Bring your records in
+  the reader trusts all doors
+  open the outside one
+
+  http://inj4.chal.deti:8043
+
+  Difficulty: medium.
+
+  CWE: CWE-611
+value: 150
+type: standard
+# Rolling flag: reached via XXE (file:///flag/flag entity resolved by the
+# parser at request time). Volume=<flagmount>/inj4:/flag:ro added by the helper.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj4_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+  - xxe
+
+connection_info: "http://inj4.chal.deti:8043"
+state: visible
+version: "0.1"

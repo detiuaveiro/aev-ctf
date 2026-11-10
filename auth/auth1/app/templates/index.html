@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="/static/base.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <div class="logo" aria-hidden="true">{{ name[0] }}</div>
+      <div>
+        <h1>{{ name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </header>
+
+    {% if page == "landing" %}
+    <div class="card">
+      <h2>Welcome</h2>
+      <p>Manage your home network, Wi-Fi, and connected devices from one
+         place.</p>
+      <p>
+        <span class="badge">Online</span>
+        <span class="badge">4 Wi-Fi clients</span>
+      </p>
+      <p style="margin-top:1rem"><a class="btn" href="/admin">Open Admin Console</a></p>
+    </div>
+    {% elif page == "admin" %}
+    <div class="card">
+      <h2>Router status</h2>
+      <table>
+        <tbody>
+          <tr><th>Uptime</th><td>14 days, 3 hours</td></tr>
+          <tr><th>Firmware</th><td>2.1.4</td></tr>
+          <tr><th>Connected devices</th><td>7</td></tr>
+          <tr><th>WAN IP</th><td>203.0.113.44</td></tr>
+          <tr><th>ISP support token</th><td>{{ support_token }}</td></tr>
+        </tbody>
+      </table>
+      <p class="flash flash-warn">Quote this token when calling ISP support
+         about an outage.</p>
+    </div>
+    {% endif %}
+
+    <p class="footer">NetGuard Router Admin Console</p>
+  </div>
+</body>
+</html>

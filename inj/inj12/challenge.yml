@@ -1,0 +1,33 @@
+name: "inj12"
+author: "course staff"
+title: "SessionVault"
+category: inj
+description: |
+  a saved session returns
+  what it carries is not data
+  the vault runs what it holds
+
+  http://inj12.chal.deti:8051
+
+  Difficulty: hard.
+
+  CWE: CWE-94
+value: 250
+type: standard
+# Rolling flag: the app never reads the flag -- the UNPICKLED object does
+# (open('/flag/flag') via __reduce__), so the live mount is read per request.
+# Volume=<flagmount>/inj12:/flag:ro is added by the lab-challenge helper.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj12_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+  - deserialization
+
+connection_info: "http://inj12.chal.deti:8051"
+state: visible
+version: "0.1"

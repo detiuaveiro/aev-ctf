@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="/static/base.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <div class="logo" aria-hidden="true">{{ name[0] }}</div>
+      <div>
+        <h1>{{ name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </header>
+
+    {% if page == "landing" %}
+    <div class="card">
+      <h2>Your shipment</h2>
+      <p>Thanks for shipping with us! Your personal tracking link:</p>
+      <p><a href="/track?sid={{ guest_sid }}">/track?sid={{ guest_sid }}</a></p>
+      <p><a class="btn-ghost btn" href="/stories">Read customer stories</a></p>
+    </div>
+    {% elif page == "stories" %}
+    <div class="card">
+      <h2>Customer stories</h2>
+      {{ story | safe }}
+    </div>
+    {% elif page == "track" %}
+    <div class="card">
+      <h2>Tracking {{ parcel.customer }}</h2>
+      <table>
+        <tbody>
+          <tr><th>Status</th><td>{{ parcel.status }}</td></tr>
+          {% if token %}
+          <tr><th>Concierge support token</th><td>{{ token }}</td></tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+    {% elif page == "notfound" %}
+    <div class="card">
+      <h2>Not found</h2>
+      <p>No parcel matches that tracking link.</p>
+    </div>
+    {% endif %}
+
+    <p class="footer">QuickShip Tracker</p>
+  </div>
+</body>
+</html>

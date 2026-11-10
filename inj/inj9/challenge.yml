@@ -1,0 +1,32 @@
+name: "inj9"
+author: "course staff"
+title: "PicLink"
+category: inj
+description: |
+  Fetch the picture far away
+  the courier checks no papers
+  any road it will take
+
+  http://inj9.chal.deti:8048
+
+  Difficulty: hard.
+
+  CWE: CWE-918
+value: 200
+type: standard
+# Rolling flag: reached via SSRF -- the fetch follows file:///flag/flag (the
+# live mount) and serves the bytes as an "image". Volume added by the helper.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj9_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+  - ssrf
+
+connection_info: "http://inj9.chal.deti:8048"
+state: visible
+version: "0.1"

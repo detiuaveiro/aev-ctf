@@ -1,0 +1,32 @@
+name: "inj1"
+author: "course staff"
+title: "LibraryNet"
+category: inj
+description: |
+  Ask the nodes if they live
+  the answer comes from deeper
+  than the question asked
+
+  http://inj1.chal.deti:8040
+
+  Difficulty: easy.
+
+  CWE: CWE-78
+value: 100
+type: standard
+# Rolling flag: the app never reads the flag -- the INJECTED shell does
+# (cat /flag/flag), so the live mount is read per request by definition.
+# Volume=<flagmount>/inj1:/flag:ro is added by the lab-challenge helper.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj1_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+
+connection_info: "http://inj1.chal.deti:8040"
+state: visible
+version: "0.1"

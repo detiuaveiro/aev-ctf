@@ -1,0 +1,29 @@
+name: "notes1"
+author: "course staff"
+category: web
+description: |
+  The guest key in hand
+  some doors belong to others
+  try them anyway
+
+  http://notes1.chal.deti:8020
+  Credentials: guest / guest123
+
+  Difficulty: introductory.
+
+  CWE: CWE-639
+value: 100
+type: standard
+
+flags:
+  - "flag{notes1_local_verify}"   # replaced per deployment
+
+tags:
+  - "web"
+  - "intro"
+
+# Where CTFd should point students (set by your deploy tooling).
+connection_info: "http://notes1.chal.deti:8020"
+
+state: visible   # published 2026-10-23 (all challenges available except xss)
+version: "0.1"

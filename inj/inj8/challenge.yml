@@ -1,0 +1,31 @@
+name: "inj8"
+author: "course staff"
+title: "StockEye"
+category: inj
+description: |
+  Inspect the storeroom
+  the mirror shows what is there
+  the star shows more
+
+  http://inj8.chal.deti:8047
+
+  Difficulty: hard.
+
+  CWE: CWE-78
+value: 200
+type: standard
+# Rolling flag: reached via the audit command -- the filter strips ; | & $ \n
+# but the shell expands the glob: path=/flag/* -> cat /flag/* (live mount).
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj8_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+
+connection_info: "http://inj8.chal.deti:8047"
+state: visible
+version: "0.1"

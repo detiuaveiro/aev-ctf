@@ -1,0 +1,18 @@
+# Local authoring convenience ONLY — nothing in the running lab uses Docker or
+# compose (D-58). The lab builds the image from the Dockerfile and runs the
+# Quadlet unit in challenge.container.
+services:
+  dvwa:
+    build: .
+    hostname: dvwa
+    domainname: chal.deti
+    ports:
+      - "8082:80"
+    environment:
+      FLAG: "flag{dvwa_local_verify}"
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 256m
+    pids_limit: 256

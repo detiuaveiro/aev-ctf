@@ -1,0 +1,36 @@
+name: "leak9"
+author: "course staff"
+category: infoleak
+description: |
+  What you see is less
+  the page keeps its private thoughts
+  read between the lines
+
+  http://leak9.chal.deti:8018
+
+  Difficulty: introductory.
+
+  CWE: CWE-200
+value: 50
+type: standard
+
+# Rolling flag: served from /etc/lab/flags/<name> (shared single-container);
+# a watcher replaces it after each correct solve (docs/plans/2026-10-09-rolling-flag-design.md).
+flag_mode: rolling
+# uid of the in-container process that reads the /flag mount (rolling flag, P2):
+# wordpress' Apache runs as www-data (33); all other apps run as ctf (1000).
+flag_uid: 1000
+
+flags:
+  - "flag{leak9_local_verify}"   # replaced per deployment
+
+tags:
+  - "web"
+  - "info-leak"
+  - "intro"
+
+# Where CTFd should point students (set by your deploy tooling).
+connection_info: "http://leak9.chal.deti:8018"
+
+state: visible   # event open (2026-10-09): flipped for the live class run
+version: "0.1"

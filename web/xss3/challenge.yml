@@ -1,0 +1,30 @@
+name: "xss3"
+author: "course staff"
+category: web
+description: |
+  The card lives in the link
+  the server sends one page
+  your browser does the rest
+
+  http://xss3.chal.deti:8023
+
+  Difficulty: medium.
+
+  CWE: CWE-79
+value: 200
+type: standard
+
+flags:
+  - "flag{xss3_local_verify}"   # replaced per deployment
+
+tags:
+  - "web"
+  - "xss"
+  - "dom"
+  - "medium"
+
+# Where CTFd should point students (set by your deploy tooling).
+connection_info: "http://xss3.chal.deti:8023"
+
+state: hidden   # flip to visible when the event opens
+version: "0.1"

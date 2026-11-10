@@ -1,0 +1,26 @@
+# Local authoring/verify convenience only (scripts/verify.py). NEVER used in
+# the lab (podman + Quadlet). Mirrors the lab unit's semantics: read-only
+# rootfs + the three tmpfs mounts from challenge.container, same 256m/64-pid
+# limits.
+services:
+  sqli2:
+    build: .
+    hostname: sqli2
+    domainname: chal.deti
+    ports:
+      - "8031:8080"
+    environment:
+      FLAG: "flag{sqli2_local_verify}"
+    read_only: true
+    # The MariaDB datadir is a built-in image VOLUME (writable, carries the
+    # build-time provisioning); /run is a writable tmpfs under read_only.
+    # Only the public report area (INTO OUTFILE target) needs an explicit
+    # tmpfs — matching challenge.container.
+    tmpfs:
+      - /data/public/reports
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 256m
+    pids_limit: 64

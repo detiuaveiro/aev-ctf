@@ -1,0 +1,33 @@
+name: "inj14"
+author: "course staff"
+title: "GateKeeper"
+category: inj
+description: |
+  the gate checks what it sees
+  the app reads what it wants
+  two readers, one request
+
+  http://inj14.chal.deti:8053
+
+  Difficulty: hard.
+
+  CWE: CWE-78
+value: 200
+type: standard
+# Rolling flag: the app never reads the flag -- the INJECTED shell does
+# (cat /flag/flag) once the WAF is evaded, so the live mount is read per
+# request. Volume=<flagmount>/inj14:/flag:ro is added by the helper.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj14_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+  - waf
+
+connection_info: "http://inj14.chal.deti:8053"
+state: visible
+version: "0.1"

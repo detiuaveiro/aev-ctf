@@ -1,0 +1,31 @@
+name: "inj7"
+author: "course staff"
+title: "DeskOne"
+category: inj
+description: |
+  The desk writes it down
+  every word in its ledger
+  even the ones that act
+
+  http://inj7.chal.deti:8046
+
+  Difficulty: medium.
+
+  CWE: CWE-78
+value: 150
+type: standard
+# Rolling flag: the injected $() reads /flag/flag into the desk log at
+# request time; the flag surfaces on the /log page. Volume added by the helper.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj7_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+
+connection_info: "http://inj7.chal.deti:8046"
+state: visible
+version: "0.1"

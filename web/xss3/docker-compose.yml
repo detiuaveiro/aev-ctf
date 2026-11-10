@@ -1,0 +1,15 @@
+services:
+  xss3:
+    build: .
+    hostname: xss3
+    domainname: chal.deti
+    ports:
+      - "8023:8080"
+    environment:
+      FLAG: "flag{xss3_local_verify}"
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    pids_limit: 64

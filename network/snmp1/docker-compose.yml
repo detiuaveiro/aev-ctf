@@ -1,0 +1,15 @@
+services:
+  snmp1:
+    build: .
+    hostname: snmp1
+    domainname: chal.deti
+    ports:
+      - "8024:161/udp"
+    environment:
+      FLAG: "flag{snmp1_local_verify}"
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    pids_limit: 64

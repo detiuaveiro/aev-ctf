@@ -1,0 +1,15 @@
+services:
+  leak8:
+    build: .
+    hostname: leak8
+    domainname: chal.deti
+    ports:
+      - "8017:8080"
+    environment:
+      FLAG: "flag{robots_local_verify}"
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    pids_limit: 64

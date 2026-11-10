@@ -1,0 +1,31 @@
+name: "inj2"
+author: "course staff"
+title: "ShelfTag"
+category: inj
+description: |
+  A label for the shelf
+  the printer takes a breath
+  the second line is yours
+
+  http://inj2.chal.deti:8041
+
+  Difficulty: easy.
+
+  CWE: CWE-78
+value: 100
+type: standard
+# Rolling flag: the injected shell reads /flag/flag (live mount added by the
+# lab-challenge helper). The filter strips ; | & $ ` -- the newline is the key.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj2_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+
+connection_info: "http://inj2.chal.deti:8041"
+state: visible
+version: "0.1"

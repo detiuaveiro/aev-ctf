@@ -1,0 +1,32 @@
+name: "inj3"
+author: "course staff"
+title: "OpsBoard"
+category: inj
+description: |
+  Write the header by hand
+  the page obeys your marks
+  even the ones you test
+
+  http://inj3.chal.deti:8042
+
+  Difficulty: medium.
+
+  CWE: CWE-94
+value: 150
+type: standard
+# Rolling flag: reached via SSTI RCE (the payload shells out and reads
+# /flag/flag live). Volume=<flagmount>/inj3:/flag:ro added by the helper.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj3_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+  - ssti
+
+connection_info: "http://inj3.chal.deti:8042"
+state: visible
+version: "0.1"

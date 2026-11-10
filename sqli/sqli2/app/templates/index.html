@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="/static/base.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      {% if logo %}
+      <img class="logo" src="{{ logo }}" alt="">
+      {% else %}
+      <div class="logo" aria-hidden="true">{{ name[0] }}</div>
+      {% endif %}
+      <div>
+        <h1>{{ name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </header>
+
+    {% if hero %}
+    <img class="hero" src="{{ hero }}" alt="">
+    {% endif %}
+
+    <div class="card">
+      <form action="/search" method="get" class="stack">
+        <label class="field">Search the counter
+          <input type="text" name="q" value="{{ q }}" placeholder="Type a part, or part of a name">
+        </label>
+        <button type="submit" class="btn">Search</button>
+      </form>
+    </div>
+
+    {% if view == "search" %}
+    <div class="card">
+      <h2>Results</h2>
+      {% if error %}
+      <p class="flash flash-error">{{ error }}</p>
+      {% elif matches %}
+      <table>
+        <thead>
+          <tr><th>Part</th><th>Price</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          {% for p in matches %}
+          <tr>
+            <td>{{ p["name"] }}</td>
+            <td>{{ money(p["price"]) }}</td>
+            <td>{{ p["description"] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="flash flash-warn">Nothing on the shelves matches &ldquo;{{ q }}&rdquo;.</p>
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="card">
+      <h2>Featured parts</h2>
+      <table>
+        <thead>
+          <tr><th>Part</th><th>Price</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          {% for p in rows %}
+          <tr>
+            <td>{{ p["name"] }}</td>
+            <td>{{ money(p["price"]) }}</td>
+            <td>{{ p["description"] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="muted">The full counter is searchable - ask for anything by name.</p>
+    </div>
+    {% endif %}
+
+    <footer class="footer">&copy; 2026 {{ name }} &middot; prepared for the course lab</footer>
+  </div>
+</body>
+</html>

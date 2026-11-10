@@ -1,0 +1,29 @@
+name: "auth7"
+author: "course staff"
+title: "ConnectAPI Partner Gateway"
+category: auth
+description: |
+  The token picks its
+  own lock to be checked with —
+  say "none," walk right in.
+
+  http://auth7.chal.deti:8066
+  Credentials: acme / acmepass
+
+  Difficulty: medium.
+
+  CWE: CWE-347
+value: 150
+type: standard
+
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{auth7_local_verify}"   # replaced per deployment
+tags:
+  - auth
+  - web
+connection_info: "http://auth7.chal.deti:8066"
+state: visible   # 2026-10-29: s33-only promotion, per docs/plans/2026-10-23-deploy-inj-s33-rule.md
+version: "0.1"

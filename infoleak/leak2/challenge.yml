@@ -1,0 +1,36 @@
+name: "leak2"
+author: "course staff"
+category: infoleak
+description: |
+  There is a back room
+  where the machine confesses
+  the door has no key
+
+  http://leak2.chal.deti:8011
+
+  Difficulty: medium.
+
+  CWE: CWE-489
+value: 150
+type: standard
+
+# Rolling flag: served from /etc/lab/flags/<name> (shared single-container);
+# a watcher replaces it after each correct solve (docs/plans/2026-10-09-rolling-flag-design.md).
+flag_mode: rolling
+# uid of the in-container process that reads the /flag mount (rolling flag, P2):
+# wordpress' Apache runs as www-data (33); all other apps run as ctf (1000).
+flag_uid: 1000
+
+flags:
+  - "flag{leak2_local_verify}"   # replaced per deployment
+
+tags:
+  - "web"
+  - "info-leak"
+  - "medium"
+
+# Where CTFd should point students (set by your deploy tooling).
+connection_info: "http://leak2.chal.deti:8011"
+
+state: visible   # event open (2026-10-09): flipped for the live class run
+version: "0.1"

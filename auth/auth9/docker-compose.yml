@@ -1,0 +1,15 @@
+services:
+  auth9:
+    build: .
+    hostname: auth9
+    domainname: chal.deti
+    ports:
+      - "8068:8080"
+    environment:
+      FLAG: "flag{auth9_local_verify}"
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    pids_limit: 64

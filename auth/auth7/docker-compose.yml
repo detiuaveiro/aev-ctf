@@ -1,0 +1,15 @@
+services:
+  auth7:
+    build: .
+    hostname: auth7
+    domainname: chal.deti
+    ports:
+      - "8066:8080"
+    environment:
+      FLAG: "flag{auth7_local_verify}"
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    pids_limit: 64

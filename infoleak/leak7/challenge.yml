@@ -1,0 +1,36 @@
+name: "leak7"
+author: "course staff"
+category: infoleak
+description: |
+  It only says yes
+  one letter, then another
+  write what it told you
+
+  http://leak7.chal.deti:8016
+
+  Difficulty: hard.
+
+  CWE: CWE-200
+value: 300
+type: standard
+
+# Rolling flag: served from /etc/lab/flags/<name> (shared single-container);
+# a watcher replaces it after each correct solve (docs/plans/2026-10-09-rolling-flag-design.md).
+flag_mode: rolling
+# uid of the in-container process that reads the /flag mount (rolling flag, P2):
+# wordpress' Apache runs as www-data (33); all other apps run as ctf (1000).
+flag_uid: 1000
+
+flags:
+  - "flag{leak7_local_verify}"   # replaced per deployment
+
+tags:
+  - "web"
+  - "info-leak"
+  - "hard"
+
+# Where CTFd should point students (set by your deploy tooling).
+connection_info: "http://leak7.chal.deti:8016"
+
+state: visible   # event open (2026-10-09): flipped for the live class run
+version: "0.1"

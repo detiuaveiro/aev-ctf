@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="/static/base.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      {% if logo %}
+      <img class="logo" src="{{ logo }}" alt="">
+      {% else %}
+      <div class="logo" aria-hidden="true">{{ name[0] }}</div>
+      {% endif %}
+      <div>
+        <h1>{{ name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </header>
+
+    {% if hero %}
+    <img class="hero" src="{{ hero }}" alt="">
+    {% endif %}
+
+    <div class="card">
+      <h2>Export a report</h2>
+      <form method="get" action="/report" class="stack">
+        <label class="field">Table
+          <input type="text" name="table" value="transfers" required>
+        </label>
+        <label class="field">Filter (WHERE clause)
+          <input type="text" name="filter" value="1=1">
+        </label>
+        <button type="submit" class="btn">Write report</button>
+      </form>
+      {% if report %}
+        {% if report["ok"] %}
+        <p class="flash flash-success">Report written: {{ report["file"] }} ({{ report["rows"] }} rows, {{ report["bytes"] }} bytes).
+          <a href="/reports/{{ report["file"] }}">Download</a></p>
+        {% else %}
+        <p class="flash flash-error">Export failed: {{ report["error"] }}</p>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    {% for key, data in tables.items() %}
+    <div class="card">
+      <h2>{{ key }} <span class="badge">{{ data[1] | length }} rows shown</span></h2>
+      <table>
+        <thead>
+          <tr>{% for c in data[0] %}<th>{{ c }}</th>{% endfor %}</tr>
+        </thead>
+        <tbody>
+          {% for r in data[1] %}
+          <tr>{% for cell in r %}<td>{{ cell }}</td>{% endfor %}</tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endfor %}
+
+    <footer class="footer">&copy; 2026 {{ name }} &middot; internal tooling &middot; prepared for the course lab</footer>
+  </div>
+</body>
+</html>

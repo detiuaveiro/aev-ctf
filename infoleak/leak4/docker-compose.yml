@@ -1,0 +1,15 @@
+services:
+  leak4:
+    build: .
+    hostname: leak4
+    domainname: chal.deti
+    ports:
+      - "8013:8080"
+    environment:
+      FLAG: "flag{g1t_h1story_l34ks}"
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    pids_limit: 64

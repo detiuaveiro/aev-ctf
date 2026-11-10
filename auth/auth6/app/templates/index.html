@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="/static/base.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <div class="logo" aria-hidden="true">{{ name[0] }}</div>
+      <div>
+        <h1>{{ name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </header>
+
+    {% if page == "landing" %}
+    <div class="card">
+      <h2>Manager console</h2>
+      <p>Sign in to the internal ops console to pull shift, stock and billing
+         reports for the branch.</p>
+      <p><a class="btn" href="/dashboard">Open the console</a></p>
+    </div>
+    <div class="card">
+      <h2>Registrar's link checker</h2>
+      <p>Shared a report link and it won't load on your side? Give it the session
+         it uses and the checker opens it from our side, signed in with the
+         manager's own credentials, to confirm it's healthy:</p>
+      <form method="post" action="/helpdesk/verify-link" class="stack">
+        <div class="field">
+          <label for="sid">Session id to verify</label>
+          <input type="text" id="sid" name="sid" required
+                 placeholder="the id the marketing site saved for you">
+        </div>
+        <p class="flash flash-warn">Tip: the id the marketing site remembered for
+           you is shown on your <a href="/dashboard">console</a>.</p>
+        <button class="btn" type="submit">Verify link</button>
+      </form>
+    </div>
+    <div class="card">
+      <h2>Grow with us</h2>
+      <p>Brightleaf's marketing microsite — leave a comment and we'll remember
+         you across all of Brightleaf next time you visit:</p>
+      <p><a class="btn-ghost btn" href="http://marketing.auth6.chal.deti:8065/">Visit the marketing site</a></p>
+    </div>
+    {% elif page == "marketing-landing" %}
+    <div class="card">
+      <h2>Brightleaf — grow with us</h2>
+      <p>We help neighbourhood nurseries grow. Tell us who you are and what
+         you're planting — leave a note below and we'll remember you across all
+         of Brightleaf next time you visit.</p>
+      <form method="post" action="/plant" class="stack">
+        <div class="field">
+          <label for="sid">Your display name</label>
+          <input type="text" id="sid" name="sid" required
+                 placeholder="e.g. yourname4271">
+        </div>
+        <button class="btn" type="submit">Leave a comment</button>
+      </form>
+    </div>
+    <div class="card">
+      <h2>Already have an account?</h2>
+      <p>The real Brightleaf app — manager console and reports — lives at
+         <a href="http://auth6.chal.deti:8065/">auth6.chal.deti</a>.</p>
+    </div>
+    {% elif page == "dashboard" %}
+    <div class="card">
+      <h2>Manager console</h2>
+      {% if token %}
+      <p>Good to see you. Reports are current.</p>
+      <table>
+        <tbody>
+          <tr><th>Signed in as</th><td>branch manager</td></tr>
+          <tr><th>Your session id</th><td><code>{{ sid }}</code></td></tr>
+          <tr><th>Ops console token</th><td>{{ token }}</td></tr>
+        </tbody>
+      </table>
+      {% else %}
+      <p>You're not signed in to the manager console.</p>
+      <table>
+        <tbody>
+          {% if sid %}
+          <tr><th>Your session id</th><td><code>{{ sid }}</code></td></tr>
+          <tr><th>Manager console</th><td>not available for this session yet</td></tr>
+          {% else %}
+          <tr><th>Session</th><td>none on this device yet</td></tr>
+          <tr><th>Manager console</th><td>sign in to see your reports</td></tr>
+          {% endif %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <p class="footer">Brightleaf</p>
+  </div>
+</body>
+</html>

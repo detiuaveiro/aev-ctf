@@ -1,0 +1,29 @@
+name: "mutillidae"
+author: "OWASP Mutillidae II project"
+category: web
+description: |
+  Mutillidae — a free, open-source, deliberately vulnerable web application for
+  web-security training. Work through its labs and find where the per-student
+  flag lives.
+
+  Difficulty: introductory→intermediate.
+
+  CWE: CWE-89, CWE-79, CWE-287 (plus many more, per exercise)
+value: 100
+type: standard
+
+flags:
+  - "flag{mutillidae_local_verify}"   # replaced per deployment
+
+tags:
+  - web
+  - mutillidae
+  - owasp
+  - intro
+
+connection_info: "http://mutillidae.chal.deti:8083"
+state: hidden
+version: "0.1"
+
+# Stock app: carries no flag and is not registered in CTFd (see docs/plans/ctfd-flag-alignment.md).
+ctfd: false

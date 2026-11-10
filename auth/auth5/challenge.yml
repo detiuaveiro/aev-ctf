@@ -1,0 +1,28 @@
+name: "auth5"
+author: "course staff"
+title: "Alma Portal"
+category: auth
+description: |
+  Hand them a hallway
+  before they ever sign in —
+  it still leads inside.
+
+  http://auth5.chal.deti:8064
+
+  Difficulty: medium.
+
+  CWE: CWE-384
+value: 150
+type: standard
+
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{auth5_local_verify}"   # replaced per deployment
+tags:
+  - auth
+  - web
+connection_info: "http://auth5.chal.deti:8064"
+state: visible   # 2026-10-29: s33-only promotion, per docs/plans/2026-10-23-deploy-inj-s33-rule.md
+version: "0.1"

@@ -1,0 +1,235 @@
+/* ============================================================================
+   Course theme "soft & friendly" — shared by all auth challenges.
+
+   Copy this file verbatim into each challenge's app/static/base.css and
+   override EXACTLY ONE token (--accent) to brand the app (see the per-app
+   accent table in docs/plans/2026-10-29-auth-category-proposal.md §2).
+   No CDNs, system font stack, offline-safe.
+   ========================================================================== */
+
+:root {
+  --bg:          #f6f7fb;  /* warm light page background        */
+  --surface:     #ffffff;  /* card surface                      */
+  --ink:         #1f2933;  /* primary text (soft near-black)    */
+  --ink-soft:    #52606d;  /* secondary text, footer            */
+  --line:        #e4e7ec;  /* borders, table dividers           */
+  --accent:      #92400e;  /* per-app brand color — OVERRIDE ME */
+  --accent-soft: #f6e9dc;  /* accent tint: hover, badges, focus */
+  --success:     #2f9e6e;  /* success flash                     */
+  --error:       #d64545;  /* error flash text                  */
+  --error-soft:  #fdecec;  /* error flash background            */
+  --warning:     #b7791f;  /* notices                           */
+  --radius:      10px;
+  --shadow:      0 1px 3px rgb(31 41 51 / .08), 0 4px 16px rgb(31 41 51 / .06);
+  --font:        system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+                 Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 16px/1.55 var(--font);
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* --- layout shell -------------------------------------------------------- */
+
+.shell {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+.shell-wide { max-width: 44rem; }
+
+/* --- header band --------------------------------------------------------- */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.4rem 1.5rem;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--accent),
+              color-mix(in srgb, var(--accent) 70%, #10131a));
+  color: rgb(255 255 255 / .96);
+  box-shadow: var(--shadow);
+}
+.masthead h1 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+.masthead .tagline {
+  margin: .15rem 0 0;
+  font-size: .85rem;
+  color: rgb(255 255 255 / .82);
+}
+
+.logo {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: rgb(255 255 255 / .92);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.hero {
+  display: block;
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  margin-top: 1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* --- cards ---------------------------------------------------------------- */
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+.card h2 {
+  margin: 0 0 .75rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.stack { display: grid; gap: 1rem; }
+.stack > .card { margin-top: 0; }
+
+/* --- forms ---------------------------------------------------------------- */
+
+.field { margin-bottom: .9rem; }
+label {
+  display: block;
+  margin-bottom: .3rem;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+input[type="text"], input[type="email"], input[type="password"],
+input[type="url"], input[type="search"], textarea, select {
+  width: 100%;
+  padding: .55rem .75rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+textarea { min-height: 7rem; resize: vertical; }
+
+/* --- buttons ---------------------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  padding: .55rem 1.1rem;
+  font: 600 .95rem var(--font);
+  color: #fdfdfd;
+  background: var(--accent);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: filter .15s ease, transform .05s ease;
+}
+.btn:hover { filter: brightness(.92); text-decoration: none; }
+.btn:active { transform: translateY(1px); }
+.btn-ghost {
+  color: var(--accent);
+  background: transparent;
+  border-color: var(--line);
+}
+.btn-ghost:hover { background: var(--accent-soft); filter: none; }
+
+/* --- flash strips ----------------------------------------------------------- */
+
+.flash {
+  margin-top: 1rem;
+  padding: .7rem 1rem;
+  border-radius: 8px;
+  border-left: 4px solid;
+  font-size: .92rem;
+}
+.flash-success { background: #e7f5ee; border-color: var(--success); color: #1d5c3f; }
+.flash-error   { background: var(--error-soft); border-color: var(--error); color: #8c2b2b; }
+.flash-warn    { background: #fdf3e3; border-color: var(--warning); color: #7a4d10; }
+
+/* --- tables ------------------------------------------------------------------ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .92rem;
+}
+th {
+  padding: .5rem .75rem;
+  text-align: left;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+}
+td {
+  padding: .6rem .75rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--accent-soft); }
+
+/* --- badges ------------------------------------------------------------------- */
+
+.badge {
+  display: inline-block;
+  padding: .15rem .6rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: color-mix(in srgb, var(--accent) 75%, #10131a);
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+/* --- footer -------------------------------------------------------------------- */
+
+.footer {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+
+/* --- motion --------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

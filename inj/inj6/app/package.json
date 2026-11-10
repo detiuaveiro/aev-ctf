@@ -1,0 +1,9 @@
+{
+  "name": "cardcraft",
+  "private": true,
+  "scripts": { "start": "node server.js" },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}

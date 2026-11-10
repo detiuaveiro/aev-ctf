@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="/static/base.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      {% if logo %}
+      <img class="logo" src="{{ logo }}" alt="">
+      {% else %}
+      <div class="logo" aria-hidden="true">{{ name[0] }}</div>
+      {% endif %}
+      <div>
+        <h1>{{ name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </header>
+
+    {% if hero %}
+    <img class="hero" src="{{ hero }}" alt="">
+    {% endif %}
+
+    {% if view == "gallery" %}
+    <div class="card">
+      <h2>Latest shots</h2>
+      <div class="grid">
+        {% for p in rows %}
+        <a class="tile" href="/photo/{{ p["id"] }}">
+          {% if p["img"] %}
+          <img class="thumb-img" src="{{ p["img"] }}" alt="{{ p["title"] }}">
+          {% else %}
+          <div class="thumb" aria-hidden="true">{{ p["title"][0] }}</div>
+          {% endif %}
+          <span class="tile-title">{{ p["title"] }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% else %}
+    <div class="card">
+      {% if photo %}
+      <h2>{{ photo["title"] }}</h2>
+      {% if photo["img"] %}
+      <img class="thumb-img thumb-large" src="{{ photo["img"] }}" alt="{{ photo["title"] }}">
+      {% else %}
+      <div class="thumb thumb-large" aria-hidden="true">{{ photo["src"][0] }}</div>
+      {% endif %}
+      <p>{{ photo["caption"] }}</p>
+      <a class="btn-ghost" href="/">&larr; Back to the gallery</a>
+      {% else %}
+      <h2>Photo not found</h2>
+      <p class="flash flash-error">{{ error }}</p>
+      <a class="btn-ghost" href="/">&larr; Back to the gallery</a>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <footer class="footer">&copy; 2026 {{ name }} &middot; prepared for the course lab</footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+name: "leak8"
+author: "course staff"
+category: infoleak
+description: |
+  Crawlers must obey
+  a list of doors not to touch
+  and find the list first
+
+  http://leak8.chal.deti:8017
+
+  Difficulty: easy.
+
+  CWE: CWE-200
+value: 100
+type: standard
+# Shared static flag: the single shared container serves one fixed value from
+# /etc/lab/flags/leak8 (one FLAG env for all students) — the per-student
+# dynamic model can never match it (static-conversion plan 2026-10-09 skipped
+# leak8; leak4 is the model).
+flag_mode: shared
+
+flags:
+  - "flag{leak8_local_verify}"   # replaced per deployment
+
+tags:
+  - "web"
+  - "info-leak"
+  - "easy"
+
+# Where CTFd should point students (set by your deploy tooling).
+connection_info: "http://leak8.chal.deti:8017"
+
+state: visible   # live in the running class; dynamic->static fixed 2026-10-14, stays published
+version: "0.1"

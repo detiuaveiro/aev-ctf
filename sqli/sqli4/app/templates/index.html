@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="/static/base.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      {% if logo %}
+      <img class="logo" src="{{ logo }}" alt="">
+      {% else %}
+      <div class="logo" aria-hidden="true">{{ name[0] }}</div>
+      {% endif %}
+      <div>
+        <h1>{{ name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </header>
+
+    {% if hero %}
+    <img class="hero" src="{{ hero }}" alt="">
+    {% endif %}
+
+    <div class="card">
+      <form action="/search" method="get" class="stack">
+        <label class="field">Search files
+          <input type="text" name="q" value="{{ q }}" placeholder="Type part of a file name">
+        </label>
+        <button type="submit" class="btn">Search</button>
+      </form>
+    </div>
+
+    {% if view == "search" %}
+    <div class="card">
+      <h2>Results</h2>
+      <p class="muted">{{ matches|length }} file{{ "s" if matches|length != 1 else "" }} match</p>
+      {% if matches %}
+      <table>
+        <thead>
+          <tr><th>File</th><th>Size</th></tr>
+        </thead>
+        <tbody>
+          {% for f in matches %}
+          <tr><td>{{ f["name"] }}</td><td>{{ f["size_label"] }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="flash flash-warn">No files match &ldquo;{{ q }}&rdquo;.</p>
+      {% endif %}
+    </div>
+    {% else %}
+    <div class="card">
+      <h2>Recent transfers</h2>
+      <table>
+        <thead>
+          <tr><th>File</th><th>Size</th><th></th></tr>
+        </thead>
+        <tbody>
+          {% for f in rows %}
+          <tr>
+            <td>{{ f["name"] }}</td>
+            <td>{{ f["size_label"] }}</td>
+            <td><button class="btn-ghost" type="button">Resend link</button></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="muted">Links are only ever sent to the original uploader.</p>
+    </div>
+    {% endif %}
+
+    <footer class="footer">&copy; 2026 {{ name }} &middot; prepared for the course lab</footer>
+  </div>
+</body>
+</html>

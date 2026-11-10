@@ -1,0 +1,19 @@
+services:
+  pwn1:
+    build: .
+    hostname: pwn1
+    domainname: chal.deti
+    ports:
+      - "9001:9001"
+    environment:
+      # In production this is the per-student derived flag. For local verify.py
+      # runs a fixed value is fine -- the solve script does not depend on it.
+      FLAG: "flag{pwn1_local_verify}"
+    # Hardening you want on the real deployment:
+    read_only: true
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    pids_limit: 64
+    mem_limit: 64m

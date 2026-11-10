@@ -1,0 +1,29 @@
+name: "dvwa"
+author: "Digininja / DVWA project"
+category: web
+description: |
+  DVWA (Damn Vulnerable Web Application) — a PHP/MySQL web application with
+  exercises at four difficulty levels. Work through the app until you find
+  where the per-student flag lives.
+
+  Difficulty: introductory→intermediate.
+
+  CWE: CWE-89, CWE-79, CWE-287 (plus many more, per exercise)
+value: 100
+type: standard
+
+flags:
+  - "flag{dvwa_local_verify}"   # replaced per deployment
+
+tags:
+  - web
+  - dvwa
+  - php
+  - intro
+
+connection_info: "http://dvwa.chal.deti:8082"
+state: hidden
+version: "0.1"
+
+# Stock app: carries no flag and is not registered in CTFd (see docs/plans/ctfd-flag-alignment.md).
+ctfd: false

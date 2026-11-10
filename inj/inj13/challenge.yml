@@ -1,0 +1,33 @@
+name: "inj13"
+author: "course staff"
+title: "FaaSDeck"
+category: inj
+description: |
+  the platform says isolated
+  the process says otherwise
+  one uid, one flag
+
+  http://inj13.chal.deti:8052
+
+  Difficulty: hard.
+
+  CWE: CWE-78
+value: 250
+type: standard
+# Rolling flag: the app never reads the flag -- the INJECTED shell does
+# (cat /flag/flag) via the invoke or exec door, so the live mount is read
+# per request. Volume=<flagmount>/inj13:/flag:ro is added by the helper.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj13_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+  - cloud
+
+connection_info: "http://inj13.chal.deti:8052"
+state: visible
+version: "0.1"

@@ -1,0 +1,15 @@
+services:
+  leak7:
+    build: .
+    hostname: leak7
+    domainname: chal.deti
+    ports:
+      - "8016:8080"
+    environment:
+      FLAG: "flag{oracle_local_verify}"
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    pids_limit: 64

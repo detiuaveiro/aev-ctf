@@ -1,0 +1,33 @@
+# ctfcli challenge definition. `ctf challenge sync` reads this.
+name: "pwn1"
+author: "course staff"
+category: pwn
+description: |
+  It asks for your name
+  it will not count the letters
+  say something quite long
+
+  `nc pwn1.chal.deti 9001`
+
+  Handout: the vulnerable binary. Difficulty: introductory.
+
+  CWE: CWE-121
+value: 100
+type: standard
+
+flags:
+  - "flag{pwn1_local_verify}"   # replaced per deployment
+
+tags:
+  - "pwn"
+  - "intro"
+
+# Files handed to students. Populated by `make build` (the compiled binary).
+files:
+  - build/vuln
+
+# Where CTFd should point students (set by your deploy tooling).
+connection_info: "nc pwn1.chal.deti 9001"
+
+state: hidden    # removed from the live lab 2026-10-23 (CTFd id 33 deleted; CHANGELOG §35.7)
+version: "0.1"

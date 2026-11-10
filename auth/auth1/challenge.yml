@@ -1,0 +1,30 @@
+name: "auth1"
+author: "course staff"
+title: "NetGuard Router"
+category: auth
+description: |
+  A door at the door:
+  one basic word guards the house,
+  never changed since birth.
+
+  http://auth1.chal.deti:8060
+
+  Difficulty: easy.
+
+  CWE: CWE-1392, CWE-521
+value: 100
+type: standard
+
+# Rolling flag: served from /etc/lab/flags/<name> (shared single-container);
+# a watcher replaces it after each correct solve (docs/plans/2026-10-09-rolling-flag-design.md).
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{auth1_local_verify}"   # replaced per deployment
+tags:
+  - auth
+  - web
+connection_info: "http://auth1.chal.deti:8060"
+state: visible   # 2026-10-29: s33-only promotion, per docs/plans/2026-10-23-deploy-inj-s33-rule.md
+version: "0.1"

@@ -1,0 +1,29 @@
+name: "bwapp"
+author: "OWASP bWAPP project"
+category: web
+description: |
+  bWAPP (buggy Web APPlication) — a deliberately vulnerable PHP web application
+  with a large catalogue of interactive exercises. Work through the app until
+  you find where the per-student flag lives.
+
+  Difficulty: introductory→intermediate.
+
+  CWE: CWE-89, CWE-79, CWE-287 (plus many more, per exercise)
+value: 100
+type: standard
+
+flags:
+  - "flag{bwapp_local_verify}"   # replaced per deployment
+
+tags:
+  - web
+  - bwapp
+  - owasp
+  - intro
+
+connection_info: "http://bwapp.chal.deti:8081"
+state: hidden
+version: "0.1"
+
+# Stock app: carries no flag and is not registered in CTFd (see docs/plans/ctfd-flag-alignment.md).
+ctfd: false

@@ -1,0 +1,32 @@
+name: "inj6"
+author: "course staff"
+title: "CardCraft"
+category: inj
+description: |
+  A card for the buyer
+  the card keeps your design
+  the design keeps the house
+
+  http://inj6.chal.deti:8045
+
+  Difficulty: hard.
+
+  CWE: CWE-94
+value: 200
+type: standard
+# Rolling flag: reached via SSTI RCE in the user-supplied EJS design
+# (execSync cat /flag/flag at render time). Volume added by the helper.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj6_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+  - ssti
+
+connection_info: "http://inj6.chal.deti:8045"
+state: visible
+version: "0.1"

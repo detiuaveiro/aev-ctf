@@ -1,0 +1,16 @@
+services:
+  auth1:
+    build: .
+    hostname: auth1
+    domainname: chal.deti
+    ports:
+      - "8060:8080"
+    environment:
+      FLAG: "flag{auth1_local_verify}"
+      ADMIN_PASS: "admin123"
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    pids_limit: 64

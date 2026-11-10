@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="/static/base.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="masthead">
+      <div class="logo" aria-hidden="true">{{ name[0] }}</div>
+      <div>
+        <h1>{{ name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </header>
+
+    {% if page == "landing" %}
+    <div class="card">
+      <h2>Course catalog</h2>
+      <p>Browse courses as a guest, or sign in with your university SSO for
+         advisor tools.</p>
+      <p class="flash flash-warn">Having trouble with a shared link? The
+         registrar's link checker opens it from our side and signs in with
+         the advisor's own SSO to confirm it loads for staff — paste the
+         link and it'll verify it for you:</p>
+      <form method="post" action="/helpdesk/verify-link" class="stack">
+        <label>Link to verify
+          <input type="url" name="link" required
+                 placeholder="http://auth5.chal.deti:8064/"></label>
+        <button class="btn" type="submit">Verify link</button>
+      </form>
+    </div>
+    {% elif page == "dashboard" %}
+    <div class="card">
+      <h2>Advisor dashboard</h2>
+      {% if token %}
+      <table>
+        <tbody>
+          <tr><th>Advising console token</th><td>{{ token }}</td></tr>
+        </tbody>
+      </table>
+      {% else %}
+      <p>Sign in to see your dashboard.</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <p class="footer">Alma Portal</p>
+  </div>
+</body>
+</html>

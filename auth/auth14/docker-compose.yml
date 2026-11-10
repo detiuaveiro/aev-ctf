@@ -1,0 +1,15 @@
+services:
+  auth14:
+    build: .
+    hostname: auth14
+    domainname: chal.deti
+    ports:
+      - "8073:8080"
+    environment:
+      FLAG: "flag{auth14_local_verify}"
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    pids_limit: 64

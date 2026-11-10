@@ -1,0 +1,32 @@
+name: "inj10"
+author: "course staff"
+title: "ToolDesk"
+category: inj
+description: |
+  Bring your own little tools
+  the desk will lend its path
+  the first name it finds wins
+
+  http://inj10.chal.deti:8049
+
+  Difficulty: hard.
+
+  CWE: CWE-426
+value: 250
+type: standard
+# Rolling flag: reached by shadowing the stock tool -- an uploaded plugin
+# named sysdiag wins PATH resolution and reads /flag/flag at run time.
+# Volume added by the helper.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj10_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+
+connection_info: "http://inj10.chal.deti:8049"
+state: visible
+version: "0.1"

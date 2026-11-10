@@ -1,0 +1,31 @@
+name: "inj5"
+author: "course staff"
+title: "NightPack"
+category: inj
+description: |
+  Pack the shelves each night
+  the packer hears two voices
+  when one word splits the line
+
+  http://inj5.chal.deti:8044
+
+  Difficulty: medium.
+
+  CWE: CWE-78
+value: 150
+type: standard
+# Rolling flag: reached via the injected command (live /flag/flag read by the
+# shell at request time). Volume=<flagmount>/inj5:/flag:ro added by the helper.
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{inj5_local_verify}"   # replaced per deployment
+
+tags:
+  - inj
+  - web
+
+connection_info: "http://inj5.chal.deti:8044"
+state: visible
+version: "0.1"

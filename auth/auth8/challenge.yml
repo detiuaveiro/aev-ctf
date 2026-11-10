@@ -1,0 +1,29 @@
+name: "auth8"
+author: "course staff"
+title: "PocketBank Lite"
+category: auth
+description: |
+  Four digits hold the
+  whole lock shut — small enough
+  to try every one.
+
+  http://auth8.chal.deti:8067
+  Credentials: customer / customer123
+
+  Difficulty: medium.
+
+  CWE: CWE-327
+value: 150
+type: standard
+
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{auth8_local_verify}"   # replaced per deployment
+tags:
+  - auth
+  - web
+connection_info: "http://auth8.chal.deti:8067"
+state: visible   # 2026-10-29: s33-only promotion, per docs/plans/2026-10-23-deploy-inj-s33-rule.md
+version: "0.1"

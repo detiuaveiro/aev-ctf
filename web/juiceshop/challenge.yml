@@ -1,0 +1,28 @@
+name: "juiceshop"
+author: "OWASP Juice Shop team"
+category: web
+description: |
+  OWASP Juice Shop — a modern, deliberately insecure e-commerce web application.
+  Explore the store at your own pace and find where the per-student flag lives.
+
+  Difficulty: introductory→intermediate (choose your own path).
+
+  CWE: CWE-89, CWE-79, CWE-287 (plus many more, per exercise)
+value: 100
+type: standard
+
+flags:
+  - "flag{juiceshop_local_verify}"   # replaced per deployment
+
+tags:
+  - web
+  - juiceshop
+  - owasp
+  - intro
+
+connection_info: "http://juiceshop.chal.deti:3000"
+state: hidden
+version: "0.1"
+
+# Stock app: carries no flag and is not registered in CTFd (see docs/plans/ctfd-flag-alignment.md).
+ctfd: false

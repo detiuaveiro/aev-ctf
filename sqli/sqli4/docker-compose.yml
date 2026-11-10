@@ -1,0 +1,20 @@
+# Local-verification mirror of challenge.container (scripts/verify.py runs
+# this). Keep it in sync with the unit: same hardening, same mounts.
+services:
+  sqli4:
+    build: .
+    hostname: sqli4
+    domainname: chal.deti
+    ports:
+      - "8033:8080"
+    environment:
+      FLAG: "flag{sqli4_local_verify}"
+    read_only: true
+    tmpfs:
+      - /var/lib/app
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    pids_limit: 64

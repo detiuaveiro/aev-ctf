@@ -1,0 +1,28 @@
+name: "auth12"
+author: "course staff"
+title: "Cornerstone CMS"
+category: auth
+description: |
+  A door, so it's said,
+  wrapped twice but never truly
+  sealed against a glance.
+
+  http://auth12.chal.deti:8071
+
+  Difficulty: easy.
+
+  CWE: CWE-257, CWE-522
+value: 100
+type: standard
+
+flag_mode: rolling
+flag_uid: 1000
+
+flags:
+  - "flag{auth12_local_verify}"   # replaced per deployment
+tags:
+  - auth
+  - web
+connection_info: "http://auth12.chal.deti:8071"
+state: visible   # 2026-10-29: s33-only promotion, per docs/plans/2026-10-23-deploy-inj-s33-rule.md
+version: "0.1"

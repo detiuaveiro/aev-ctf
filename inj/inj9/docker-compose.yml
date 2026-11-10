@@ -1,0 +1,18 @@
+# Local-verification mirror of challenge.container (scripts/verify.py runs
+# this). Keep in sync with the unit: same hardening, same mounts.
+services:
+  inj9:
+    build: .
+    hostname: inj9
+    domainname: chal.deti
+    ports:
+      - "8048:8080"
+    volumes:
+      - ./local-flag:/flag:ro
+    read_only: true
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    pids_limit: 64

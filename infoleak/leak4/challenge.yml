@@ -1,0 +1,34 @@
+name: "leak4"
+author: "course staff"
+category: infoleak
+description: |
+  All the changes kept
+  even the ones thrown away
+  read the old pages
+
+  http://leak4.chal.deti:8013
+
+  Difficulty: medium.
+
+  CWE: CWE-538
+value: 200
+type: standard
+
+# Git exercise: the flag lives in the git history (identical for every student),
+# so it cannot be per-student. flag_mode: shared -> one fixed static flag.
+# Every other challenge omits this and gets the default (unique -> dynamic flag).
+flag_mode: shared
+
+flags:
+  - "flag{g1t_h1story_l34ks}"   # fixed: baked into the git history at image build
+
+tags:
+  - "web"
+  - "info-leak"
+  - "medium"
+
+# Where CTFd should point students (set by your deploy tooling).
+connection_info: "http://leak4.chal.deti:8013"
+
+state: visible   # event open (2026-10-09): flipped for the live class run
+version: "0.1"

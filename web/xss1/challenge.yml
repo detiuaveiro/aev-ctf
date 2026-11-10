@@ -1,0 +1,30 @@
+name: "xss1"
+author: "course staff"
+category: web
+description: |
+  The search box
+  repeats what you type
+  to everyone who looks
+
+  http://xss1.chal.deti:8021
+
+  Difficulty: introductory.
+
+  CWE: CWE-79
+value: 100
+type: standard
+
+flags:
+  - "flag{xss1_local_verify}"   # replaced per deployment
+
+tags:
+  - "web"
+  - "xss"
+  - "reflected"
+  - "intro"
+
+# Where CTFd should point students (set by your deploy tooling).
+connection_info: "http://xss1.chal.deti:8021"
+
+state: hidden   # flip to visible when the event opens
+version: "0.1"

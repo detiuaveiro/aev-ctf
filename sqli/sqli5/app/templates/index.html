@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ name }}</title>
+  <link rel="stylesheet" href="/static/base.css">
+</head>
+<body>
+  <div class="shell shell-wide">
+    <header class="masthead">
+      {% if logo %}
+      <img class="logo" src="{{ logo }}" alt="">
+      {% else %}
+      <div class="logo" aria-hidden="true">{{ name[0] }}</div>
+      {% endif %}
+      <div>
+        <h1>{{ name }}</h1>
+        <p class="tagline">{{ tagline }}</p>
+      </div>
+    </header>
+
+    {% if hero %}
+    <img class="hero" src="{{ hero }}" alt="">
+    {% endif %}
+
+    <div class="card">
+      <h2>{% if tag %}Tagged posts{% else %}Latest{% endif %}</h2>
+      {% if posts %}
+      <div class="stack">
+        {% for p in posts %}
+        <div class="post">
+          <h3>{{ p["title"] }}</h3>
+          <p class="muted"><span class="badge">{{ p["tag"] }}</span> &middot; {{ p["posted"] }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="flash flash-warn">No posts there yet.</p>
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <h2>Tags</h2>
+      <p class="stack">
+        {% for t in tags %}
+        <a href="/?tag={{ t["tag"] }}">{{ t["tag"] }} <span class="badge">{{ t["n"] }}</span></a>
+        {% endfor %}
+      </p>
+    </div>
+
+    <footer class="footer">&copy; 2026 {{ name }} &middot; prepared for the course lab</footer>
+  </div>
+</body>
+</html>
